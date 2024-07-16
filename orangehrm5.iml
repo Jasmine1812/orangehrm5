@@ -13,5 +13,6 @@
     <orderEntry type="library" name="auto-service-annotations-1.1.1-sources" level="project" />
     <orderEntry type="library" name="error_prone_annotations-2.28.0" level="project" />
     <orderEntry type="library" name="testng-7.9.0" level="project" />
+    <orderEntry type="library" name="log4j-api-2.19.0" level="project" />
   </component>
 </module>

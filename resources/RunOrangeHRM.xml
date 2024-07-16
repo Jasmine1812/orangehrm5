@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="OrangeHRM Automation Testing">
+    <listeners>
+        <listener class-name="reportConfig.ExtentTestListener"></listener>
+        <listener class-name="commons.MethodListener"></listener>
+    </listeners>
 
     <test name="Run on Firefox browser">
         <parameter name="browser" value="firefox"></parameter>
+        <parameter name="url" value="http://jasmine.com/orangehrm5"></parameter>
         <classes>
             <class name="com.orangehrm.admin.PIM_Add_Employee" />
         </classes>
