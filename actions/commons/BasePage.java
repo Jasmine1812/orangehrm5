@@ -186,5 +186,13 @@ public class BasePage {
 //        getElement(BasePageUI.UPLOAD_FILE).sendKeys(fullFileName);
     }
 
+    public String getElementText(String locator) {
+        return getElement(locator).getText();
+    }
+
+    public String getElementText(String locator, String... restParams) {
+        return getElement(getDynamicLocator(locator,restParams)).getText();
+    }
+
 
 }
