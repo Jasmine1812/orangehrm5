@@ -17,13 +17,9 @@ import commons.BaseTest;
 
 public class ExtentTestListener extends BaseTest implements ITestListener {
 
-    public ExtentTestListener() {
-        super();
-    }
-
     @Override
     public void onStart(ITestContext iTestContext) {
-     iTestContext.setAttribute("WebDriver", this.getDriver());
+        iTestContext.setAttribute("WebDriver", this.getDriver());
     }
 
     @Override
