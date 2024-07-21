@@ -149,6 +149,10 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locator)));
     }
 
+    public void waitForListElementInvisible(String locator) {
+        new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).until(ExpectedConditions.invisibilityOfAllElements(getListElement(locator)));
+    }
+
     public void sleepInSeconds(long timeSecond) {
         try {
             Thread.sleep(timeSecond * 1000);
@@ -191,8 +195,19 @@ public class BasePage {
     }
 
     public String getElementText(String locator, String... restParams) {
-        return getElement(getDynamicLocator(locator,restParams)).getText();
+        return getElement(getDynamicLocator(locator, restParams)).getText();
     }
 
+    public boolean isElementDisplayed(String locator) {
+        return getElement(locator).isDisplayed();
+    }
+
+    public boolean isElementDisplayed(String locator, String... restParams) {
+        return getElement(getDynamicLocator(locator, restParams)).isDisplayed();
+    }
+
+    public String getElementAttributeValue(String locator, String attributeName) {
+        return getElement(locator).getAttribute(attributeName);
+    }
 
 }

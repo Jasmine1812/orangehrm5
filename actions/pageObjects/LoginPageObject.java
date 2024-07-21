@@ -1,10 +1,11 @@
 package pageObjects;
 
+import commons.BaseActions;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.admin.LoginPageUI;
 
-public class LoginPageObject extends BasePage {
+public class LoginPageObject extends BaseActions {
     private WebDriver driver;
     public LoginPageObject(WebDriver driver) {
         super(driver);
@@ -19,9 +20,11 @@ public class LoginPageObject extends BasePage {
         waitForElementVisible(LoginPageUI.PASSWORD_TEXTBOX);
         sendKeyToElement(LoginPageUI.PASSWORD_TEXTBOX, password);
     }
-    public void clickToLoginButton() {
+    public DashboardPageObject clickToLoginButton() {
         waitForElementClickable(LoginPageUI.LOGIN_BUTTON);
         clickToElement(LoginPageUI.LOGIN_BUTTON);
+//        waitForSpinnerIconInvisible();
+        return PageGenerator.getHomepage(driver);
     }
 
 }

@@ -6,4 +6,5 @@ public class PersonalDetailsPageUI {
     public static final String LAST_NAME = "name=lastName";
     public static final String EMPLOYEE_ID = "xpath=//label[text()='Employee Id']/parent::div//following-sibling::div/input";
     public static final String EMPLOYEE_LIST_LINK = "xpath=//a[text()='Employee List']";
+    public static final String HEAD_TITLE_LABEL = "xpath=//div[contains(@class,'orangehrm-horizontal-padding')]/h6" ;
 }

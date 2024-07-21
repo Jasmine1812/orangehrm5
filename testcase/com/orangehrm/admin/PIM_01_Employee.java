@@ -20,7 +20,10 @@ public class PIM_01_Employee extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailsPageObject personalDetailsPage;
-    String firstName = "Nguyen";String middleName = "Trong";String lastName = "Duc";String employeeID;
+    String firstName = "Nguyen";
+    String middleName = "Trong";
+    String lastName = "Duc";
+    String employeeID;
 
     @Parameters({"browser", "url"})
     @BeforeClass
@@ -30,36 +33,42 @@ public class PIM_01_Employee extends BaseTest {
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterToUserNameTextBox("Admin");
         loginPage.enterToPasswordTextBox("Admin@admin123");
-        loginPage.clickToLoginButton();
-        homepage = PageGenerator.getHomepage(driver);
-        homepage.clickToPIMLink();
-        employeeListPage = PageGenerator.getEmployeeListPage(driver);
+        homepage = loginPage.clickToLoginButton();
+        employeeListPage = homepage.openEmployeeListPage();
 
 
     }
 
     @Test
-    public void TC_01_Add_Employee() {
-//        ExtentTestManager.startTest(method.getName() + " - " + this.browserName.toUpperCase(), "TC_01");
-        employeeListPage.clickToAddEmployeeLink();
-        addEmployeePage = PageGenerator.getAddEmployeeListPage(driver);
+    public void TC_01_Add_Employee(Method method) {
+        ExtentTestManager.startTest(method.getName() + " - " + this.browserName.toUpperCase(), "TC_01_Add_Employee");
+
+        addEmployeePage = employeeListPage.clickToAddEmployeeLink();
         addEmployeePage.EnterToFirstNameTextbox(firstName);
         addEmployeePage.EnterToMiddleNameTextbox(middleName);
         addEmployeePage.EnterToLastNameTextbox(lastName);
         employeeID = addEmployeePage.getEmployeeID();
         addEmployeePage.clickToSaveButton();
-        Assert.assertEquals(addEmployeePage.getMessageSuccess(), "Successfully Saved");
+        Assert.assertTrue(addEmployeePage.isSuccessMessageDisplayed("Successfully Saved"));
+        addEmployeePage.waitForSpinnerIconInvisible();
+
         personalDetailsPage = PageGenerator.getPersonalDetailsPage(driver);
+        Assert.assertTrue(personalDetailsPage.isHeaderTitleDisplayed());
+        personalDetailsPage.waitForSpinnerIconInvisible();
         Assert.assertEquals(personalDetailsPage.getFirstName(), firstName);
         Assert.assertEquals(personalDetailsPage.getLastName(), lastName);
         Assert.assertEquals(personalDetailsPage.getMiddleName(), middleName);
         Assert.assertEquals(personalDetailsPage.getEmployeeID(), employeeID);
-        personalDetailsPage.clickToEmployeeListLink();
-        employeeListPage = PageGenerator.getEmployeeListPage(driver);
+        employeeListPage = personalDetailsPage.clickToEmployeeListLink();
+        employeeListPage.waitForSpinnerIconInvisible();
         employeeListPage.enterToEmployeeIDTextbox(employeeID);
+        employeeListPage.clickToSearchButton();
+        Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("1", "Id", employeeID));
+        Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("1", "First (& Middle) Name", firstName + " " + middleName));
+        Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("1", "Last Name", lastName));
     }
 
-    @Test
+//    @Test
     public void TC_02() {
 
     }

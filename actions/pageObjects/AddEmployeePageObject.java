@@ -1,12 +1,11 @@
 package pageObjects;
 
-import commons.BasePage;
+import commons.BaseActions;
 import org.openqa.selenium.WebDriver;
 import pageUIs.admin.AddEmployeePageUI;
-import pageUIs.admin.BaseElementUI;
 
 
-public class AddEmployeePageObject extends BasePage {
+public class AddEmployeePageObject extends BaseActions {
     private WebDriver driver;
     public AddEmployeePageObject(WebDriver driver) {
         super(driver);
@@ -33,13 +32,11 @@ public class AddEmployeePageObject extends BasePage {
         clickToElement(AddEmployeePageUI.SAVE_BUTTON);
     }
 
-    public String getMessageSuccess() {
-        waitForElementVisible(BaseElementUI.TOAST_MESSAGE);
-        return getElementText(BaseElementUI.TOAST_MESSAGE);
-    }
 
     public String getEmployeeID() {
         waitForElementVisible(AddEmployeePageUI.EMPLOYEE_ID);
-        return getElementText(AddEmployeePageUI.EMPLOYEE_ID);
+        return getElementAttributeValue(AddEmployeePageUI.EMPLOYEE_ID, "value");
     }
+
+
 }
