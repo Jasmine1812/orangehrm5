@@ -115,7 +115,6 @@ public class BasePage {
     public void selectItemInCustomDropdown(String parentLocator, String childItemLocator, String expectedItem) {
         getElement(parentLocator).click();
         sleepInSeconds(2);
-
         List<WebElement> allItems = new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).
                 until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
         sleepInSeconds(2);
@@ -208,6 +207,43 @@ public class BasePage {
 
     public String getElementAttributeValue(String locator, String attributeName) {
         return getElement(locator).getAttribute(attributeName);
+    }
+    public void checkToCheckboxRadio(String locator) {
+        if (!getElement(locator).isSelected()) {
+            getElement(locator).click();
+        }
+    }
+    public void checkToCheckboxRadio(String locator, String... restParams) {
+        if (!getElement(getDynamicLocator(locator,restParams)).isSelected()) {
+            getElement(getDynamicLocator(locator,restParams)).click();
+        }
+    }
+
+    public void uncheckToCheckbox(String locator) {
+        if (getElement(locator).isSelected()) {
+            getElement(locator).click();
+        }
+    }
+
+    public void clickToElementByJS(String locator) {
+        if (!getElement(locator).isSelected()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(locator));
+        }
+    }
+    public void clickToElementByJS(String locator, String... restParams) {
+        if (!getElement(getDynamicLocator(locator,restParams)).isSelected()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(getDynamicLocator(locator,restParams)));
+        }
+    }
+
+    public void uncheckCheckboxByJS(String locator) {
+        if (getElement(locator).isSelected()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(locator));
+        }
+    }
+
+    public boolean isElementSelected(String locator, String... restParams) {
+        return getElement(getDynamicLocator(locator,restParams)).isSelected();
     }
 
 }

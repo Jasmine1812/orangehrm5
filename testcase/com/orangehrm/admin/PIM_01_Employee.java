@@ -20,7 +20,7 @@ public class PIM_01_Employee extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailsPageObject personalDetailsPage;
-    String firstName = "Nguyen";
+    String firstName = "David";
     String middleName = "Trong";
     String lastName = "Duc";
     String employeeID;
@@ -68,10 +68,32 @@ public class PIM_01_Employee extends BaseTest {
         Assert.assertTrue(employeeListPage.isValueDisplayedAtColumnName("1", "Last Name", lastName));
     }
 
-//    @Test
-    public void TC_02() {
+    @Test
+    public void TC_02_Update_Personal_Details() {
+        personalDetailsPage = employeeListPage.openPersonalDetailsByEditIcon("1", "Id", employeeID);
+        personalDetailsPage.enterToOtherIdTextbox(otherId);
+        personalDetailsPage.enterToDriversLicenseNumberTextbox(driversLicenseNumber);
+        personalDetailsPage.enterTolicenseExpiryDateDatePicker(licenseExpiryDate);
+        personalDetailsPage.enterToDateOfBirthteDatePicker(dateOfBirth);
+        personalDetailsPage.selectToNationalityDropdown(nationality);
+        personalDetailsPage.selectToMaritalStatusDropdown(maritalStatus);
+        personalDetailsPage.clickToRadioButtonByLabelName(gender);
+        personalDetailsPage.clickToSaveButtonOnPersonalDetails();
+        Assert.assertTrue(personalDetailsPage.isSuccessMessageDisplayed("Successfully Updated"));
+        personalDetailsPage.waitForSpinnerIconInvisible();
+        Assert.assertEquals(personalDetailsPage.getNationalityDropdownSelectedText(), nationality);
+        Assert.assertEquals(personalDetailsPage.getMaritalStatusDropdownSelectedText(), maritalStatus);
+        Assert.assertTrue(personalDetailsPage.isRadioButtonSelectedByLabelName(gender));
 
     }
+
+    String otherId = "112233";
+    String driversLicenseNumber = "A123-456-8899";
+    String licenseExpiryDate = "2028-10-25";
+    String nationality = "Canadian";
+    String maritalStatus = "Married";
+    String gender = "Male";
+    String dateOfBirth = "1991-04-10";
 
 
     @AfterClass
