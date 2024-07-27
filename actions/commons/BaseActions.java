@@ -49,12 +49,9 @@ public class BaseActions extends BasePage {
     }
 
     public void uploadOneFile(String fileName) {
-        scrollToBottomPageByJS();
-        sleepInSeconds(3);
         String filePath = GlobalConstants.UPLOAD_PATH;
         String fullFileName = filePath + fileName;
-        sendKeyToElement(BaseActionsPageUI.UPLOAD_FILE, fileName);
-        sleepInSeconds(4);
+        getElement(BaseActionsPageUI.UPLOAD_FILE).sendKeys(fullFileName);
     }
 
     public void uploadMultipleFiles(String... fileName) {
@@ -63,7 +60,7 @@ public class BaseActions extends BasePage {
         for (String file : fileName) {
             fullFileName = fullFileName + filePath + file + "\n";
         }
-        sendKeyToElement(BaseActionsPageUI.UPLOAD_FILE, fullFileName);
+        getElement(BaseActionsPageUI.UPLOAD_FILE).sendKeys(fullFileName);
         sleepInSeconds(4);
     }
 

@@ -21,14 +21,7 @@ public class PIM_01_Employee extends BaseTest {
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailsPageObject personalDetailsPage;
     private ContactDetailsPageObject contactDetailsPage;
-    String firstName = "David";
-    String middleName = "Trong";
-    String lastName = "Duc";
-    String employeeID;
-    String file1 = "996.png";
-    String file2 = "997.png";
-    String file3 = "998.png";
-    String multiFile[] = {file1, file2, file3};
+
 
     @Parameters({"browser", "url"})
     @BeforeClass
@@ -95,9 +88,32 @@ public class PIM_01_Employee extends BaseTest {
         personalDetailsPage.openDynamicLeftMenuPIMByText("Contact Details");
         contactDetailsPage = PageGenerator.getContactDetailsPage(driver);
         contactDetailsPage.waitForSpinnerIconInvisible();
+        //Contact Details
+        contactDetailsPage.enterToStreet1Textbox(street1);
+        contactDetailsPage.enterToStreet2Textbox(street2);
+        contactDetailsPage.enterToCityTextbox(city);
+        contactDetailsPage.enterToStateTextbox(stateProvince);
+        contactDetailsPage.enterToZipCodeTextbox(zipCode);
+        contactDetailsPage.selectToCountryDropdown(country);
+        contactDetailsPage.enterToHomeTextbox(homeTelephone);
+        contactDetailsPage.enterToMobileTextbox(mobile);
+        contactDetailsPage.enterToWorkTelephoneTextbox(workTelephone);
+        contactDetailsPage.enterToWorkEmailTextbox(work_Email);
+        contactDetailsPage.enterToOtherEmailTextbox(other_Email);
+        contactDetailsPage.clickToSaveButtonOnContactDetails();
+        Assert.assertTrue(contactDetailsPage.isSuccessMessageDisplayed("Successfully Updated"));
+        contactDetailsPage.waitForSpinnerIconInvisible();
+        Assert.assertEquals(contactDetailsPage.getToStreet1Textbox(),street1);
+        //Attachment
+
         contactDetailsPage.clickToAddAttachmentsButton();
         contactDetailsPage.uploadOneFile(file1);
-//        contactDetailsPage.uploadMultipleFiles(multiFile);
+        contactDetailsPage.enterToCommentTextarea(comment);
+        contactDetailsPage.clickToSaveAttachmentButton();
+        Assert.assertTrue(contactDetailsPage.isSuccessMessageDisplayed("Successfully Saved"));
+        contactDetailsPage.waitForSpinnerIconInvisible();
+
+
     }
 
     String otherId = "112233";
@@ -107,6 +123,26 @@ public class PIM_01_Employee extends BaseTest {
     String maritalStatus = "Married";
     String gender = "Male";
     String dateOfBirth = "1991-04-10";
+    String firstName = "David";
+    String middleName = "Beck";
+    String lastName = "Duc";
+    String employeeID;
+    String file1 = "996.png";
+    String file2 = "997.png";
+    String file3 = "998.png";
+    String multiFile[] = {file1, file2, file3};
+    String street1 = "so 138";
+    String street2 = "pho Tran Binh";
+    String city = "Nam Tu Liem";
+    String stateProvince = "Ha Noi";
+    String zipCode = "100000";
+    String country = "Viet Nam";
+    String homeTelephone = "0988098078";
+    String workTelephone = "0988098088";
+    String mobile = "0911098088";
+    String other_Email = "jasmine" + generateRandomNumber() + "@gmail.com";
+    String work_Email = "jasmine" + generateRandomNumber() + "@fpt.com";
+    String comment = "Comment 01";
 
 
     @AfterClass
