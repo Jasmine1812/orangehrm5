@@ -79,6 +79,6 @@ public class ContactDetailsPageObject extends BaseActions {
     }
 
     public String getToStreet1Textbox() {
-        return getElementText(ContactDetailsPageUI.STREET1_TEXTBOX);
+        return getElementAttributeValue(ContactDetailsPageUI.STREET1_TEXTBOX, "value");
     }
 }
