@@ -20,10 +20,15 @@ public class PIM_01_Employee extends BaseTest {
     private EmployeeListPageObject employeeListPage;
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailsPageObject personalDetailsPage;
+    private ContactDetailsPageObject contactDetailsPage;
     String firstName = "David";
     String middleName = "Trong";
     String lastName = "Duc";
     String employeeID;
+    String file1 = "996.png";
+    String file2 = "997.png";
+    String file3 = "998.png";
+    String multiFile[] = {file1, file2, file3};
 
     @Parameters({"browser", "url"})
     @BeforeClass
@@ -35,8 +40,6 @@ public class PIM_01_Employee extends BaseTest {
         loginPage.enterToPasswordTextBox("Admin@admin123");
         homepage = loginPage.clickToLoginButton();
         employeeListPage = homepage.openEmployeeListPage();
-
-
     }
 
     @Test
@@ -85,6 +88,16 @@ public class PIM_01_Employee extends BaseTest {
         Assert.assertEquals(personalDetailsPage.getMaritalStatusDropdownSelectedText(), maritalStatus);
         Assert.assertTrue(personalDetailsPage.isRadioButtonSelectedByLabelName(gender));
 
+    }
+
+    @Test
+    public void TC_03_Add_Contact_Details() {
+        personalDetailsPage.openDynamicLeftMenuPIMByText("Contact Details");
+        contactDetailsPage = PageGenerator.getContactDetailsPage(driver);
+        contactDetailsPage.waitForSpinnerIconInvisible();
+        contactDetailsPage.clickToAddAttachmentsButton();
+        contactDetailsPage.uploadOneFile(file1);
+//        contactDetailsPage.uploadMultipleFiles(multiFile);
     }
 
     String otherId = "112233";

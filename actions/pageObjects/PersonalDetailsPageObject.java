@@ -3,6 +3,7 @@ package pageObjects;
 import commons.BaseActions;
 import org.openqa.selenium.WebDriver;
 import pageUIs.admin.BaseActionsPageUI;
+import pageUIs.admin.ContactDetailsPageUI;
 import pageUIs.admin.PersonalDetailsPageUI;
 
 public class PersonalDetailsPageObject extends BaseActions {

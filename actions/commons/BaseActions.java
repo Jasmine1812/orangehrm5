@@ -18,15 +18,16 @@ public class BaseActions extends BasePage {
         return isElementDisplayed(BaseActionsPageUI.DYNAMIC_CELL_VALUE_BY_COMLUMN_INDEX_AND_ROW_INDEX, rowIndex, String.valueOf(columnIndex), valueCell);
     }
 
-    public boolean isSuccessMessageDisplayed(String message){
+    public boolean isSuccessMessageDisplayed(String message) {
         waitForElementVisible(BaseActionsPageUI.DYNAMIC_SUCCESS_MESSAGE, message);
-        return isElementDisplayed(BaseActionsPageUI.DYNAMIC_SUCCESS_MESSAGE,message);
+        return isElementDisplayed(BaseActionsPageUI.DYNAMIC_SUCCESS_MESSAGE, message);
     }
 
-    public void waitForSpinnerIconInvisible(){
+    public void waitForSpinnerIconInvisible() {
         waitForListElementInvisible(BaseActionsPageUI.SPINNER_ICON);
     }
-    public PersonalDetailsPageObject openPersonalDetailsByEditIcon(String rowIndex, String columnName, String valueCell){
+
+    public PersonalDetailsPageObject openPersonalDetailsByEditIcon(String rowIndex, String columnName, String valueCell) {
         int columnIndex = getListElementSize(BaseActionsPageUI.COLUMN_INDEX_BY_COMLUMN_NAME, columnName) + 1;
         waitForElementClickable(BaseActionsPageUI.DYNAMIC_EDIT_ICON_BY_COLUMN_INDDEX_AND_ROW_INDEX, rowIndex, String.valueOf(columnIndex), valueCell);
         clickToElement(BaseActionsPageUI.DYNAMIC_EDIT_ICON_BY_COLUMN_INDDEX_AND_ROW_INDEX, rowIndex, String.valueOf(columnIndex), valueCell);
@@ -36,13 +37,35 @@ public class BaseActions extends BasePage {
 
     public void clickToRadioButtonByLabelName(String gender) {
         clickToElementByJS(BaseActionsPageUI.GENDER_STATUS, gender);
-        sleepInSeconds(3);
     }
 
     public boolean isRadioButtonSelectedByLabelName(String gender) {
         return isElementSelected(BaseActionsPageUI.GENDER_STATUS, gender);
     }
 
+
+    public void openDynamicLeftMenuPIMByText(String pageName) {
+        clickToElementByJS(BaseActionsPageUI.DYAMIC_LEFT_MENU_PIM_BY_TEXT, pageName);
+    }
+
+    public void uploadOneFile(String fileName) {
+        scrollToBottomPageByJS();
+        sleepInSeconds(3);
+        String filePath = GlobalConstants.UPLOAD_PATH;
+        String fullFileName = filePath + fileName;
+        sendKeyToElement(BaseActionsPageUI.UPLOAD_FILE, fileName);
+        sleepInSeconds(4);
+    }
+
+    public void uploadMultipleFiles(String... fileName) {
+        String filePath = GlobalConstants.UPLOAD_PATH;
+        String fullFileName = "";
+        for (String file : fileName) {
+            fullFileName = fullFileName + filePath + file + "\n";
+        }
+        sendKeyToElement(BaseActionsPageUI.UPLOAD_FILE, fullFileName);
+        sleepInSeconds(4);
+    }
 
 
 

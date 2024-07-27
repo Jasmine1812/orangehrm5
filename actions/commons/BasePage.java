@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -99,6 +101,7 @@ public class BasePage {
         getElement(getDynamicLocator(locator, restParams)).sendKeys(keysToSend);
     }
 
+
     public void selectItemInDropdown(String locator, String textItem) {
         new Select(getElement(locator)).selectByVisibleText(textItem);
     }
@@ -114,11 +117,8 @@ public class BasePage {
 
     public void selectItemInCustomDropdown(String parentLocator, String childItemLocator, String expectedItem) {
         getElement(parentLocator).click();
-        sleepInSeconds(2);
         List<WebElement> allItems = new WebDriverWait(driver, Duration.ofSeconds(longTimeout)).
                 until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
-        sleepInSeconds(2);
-
         for (WebElement item : allItems) {
             if (item.getText().trim().equals(expectedItem)) {
                 item.click();
@@ -208,14 +208,16 @@ public class BasePage {
     public String getElementAttributeValue(String locator, String attributeName) {
         return getElement(locator).getAttribute(attributeName);
     }
+
     public void checkToCheckboxRadio(String locator) {
         if (!getElement(locator).isSelected()) {
             getElement(locator).click();
         }
     }
+
     public void checkToCheckboxRadio(String locator, String... restParams) {
-        if (!getElement(getDynamicLocator(locator,restParams)).isSelected()) {
-            getElement(getDynamicLocator(locator,restParams)).click();
+        if (!getElement(getDynamicLocator(locator, restParams)).isSelected()) {
+            getElement(getDynamicLocator(locator, restParams)).click();
         }
     }
 
@@ -230,11 +232,32 @@ public class BasePage {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(locator));
         }
     }
+
     public void clickToElementByJS(String locator, String... restParams) {
-        if (!getElement(getDynamicLocator(locator,restParams)).isSelected()) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(getDynamicLocator(locator,restParams)));
+        if (!getElement(getDynamicLocator(locator, restParams)).isSelected()) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", getElement(getDynamicLocator(locator, restParams)));
         }
     }
+
+    public void scrollToElement(String locator) {
+        new Actions(driver).scrollToElement(getElement(locator)).perform();
+    }
+
+    public void scrollToElement(String locator, String... restParams) {
+        new Actions(driver).scrollToElement(getElement(getDynamicLocator(locator,restParams))).perform();
+    }
+
+    public void scrollToElementByJS(String locator) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(locator));
+    }
+    public void scrollToElementByJS(String locator, String... restParams) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", getElement(getDynamicLocator(locator,restParams)));
+    }
+
+    public void scrollToBottomPageByJS() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
+
 
     public void uncheckCheckboxByJS(String locator) {
         if (getElement(locator).isSelected()) {
@@ -243,7 +266,8 @@ public class BasePage {
     }
 
     public boolean isElementSelected(String locator, String... restParams) {
-        return getElement(getDynamicLocator(locator,restParams)).isSelected();
+        return getElement(getDynamicLocator(locator, restParams)).isSelected();
     }
+
 
 }
