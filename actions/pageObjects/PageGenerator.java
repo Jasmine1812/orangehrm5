@@ -24,4 +24,7 @@ public class PageGenerator {
     public static PersonalDetailsPageObject getPersonalDetailsPage(WebDriver driver) {
         return new PersonalDetailsPageObject(driver);
     }
+    public static EmergencyContactPageObject getEmergencyContactPage(WebDriver driver){
+        return new EmergencyContactPageObject(driver);
+    }
 }

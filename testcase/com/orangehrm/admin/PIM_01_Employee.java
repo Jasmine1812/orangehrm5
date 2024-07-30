@@ -21,6 +21,7 @@ public class PIM_01_Employee extends BaseTest {
     private AddEmployeePageObject addEmployeePage;
     private PersonalDetailsPageObject personalDetailsPage;
     private ContactDetailsPageObject contactDetailsPage;
+    private EmergencyContactPageObject emergencyContactPage;
 
 
     @Parameters({"browser", "url"})
@@ -103,7 +104,7 @@ public class PIM_01_Employee extends BaseTest {
         contactDetailsPage.clickToSaveButtonOnContactDetails();
         Assert.assertTrue(contactDetailsPage.isSuccessMessageDisplayed("Successfully Updated"));
         contactDetailsPage.waitForSpinnerIconInvisible();
-        Assert.assertEquals(contactDetailsPage.getToStreet1Textbox(),street1);
+        Assert.assertEquals(contactDetailsPage.getToStreet1Textbox(), street1);
         //Attachment
 
         contactDetailsPage.clickToAddAttachmentsButton();
@@ -112,10 +113,32 @@ public class PIM_01_Employee extends BaseTest {
         contactDetailsPage.clickToSaveAttachmentButton();
         Assert.assertTrue(contactDetailsPage.isSuccessMessageDisplayed("Successfully Saved"));
         contactDetailsPage.waitForSpinnerIconInvisible();
+    }
 
+    @Test
+    public void TC_04_Add_Emergency_Contacts() {
+        contactDetailsPage.openDynamicLeftMenuPIMByText("Emergency Contacts");
+        emergencyContactPage = PageGenerator.getEmergencyContactPage(driver);
+        emergencyContactPage.waitForSpinnerIconInvisible();
+        emergencyContactPage.clickToAddContactButton();
+        emergencyContactPage.enterToNameTextbox(nameContact);
+        emergencyContactPage.enterToRelationshipTextbox(relationship);
+        emergencyContactPage.enterToHomeTelephoneTextbox(homeTelephone);
+        emergencyContactPage.enterToMobileTextbox(mobile);
+        emergencyContactPage.enterToWorkTelephone(workTelephone);
+        emergencyContactPage.clickToSaveContactButton();
+        Assert.assertTrue(emergencyContactPage.isSuccessMessageDisplayed("Successfully Saved"));
+        emergencyContactPage.waitForSpinnerIconInvisible();
+        emergencyContactPage.isValueDisplayedAtColumnNameInContact("1", "Name", nameContact);
+        emergencyContactPage.isValueDisplayedAtColumnNameInContact("1", "Relationship", relationship);
+        emergencyContactPage.isValueDisplayedAtColumnNameInContact("1", "Home Telephone", homeTelephone);
+        emergencyContactPage.isValueDisplayedAtColumnNameInContact("1", "Mobile", mobile);
+        emergencyContactPage.isValueDisplayedAtColumnNameInContact("1", "Work Telephone", workTelephone);
 
     }
 
+    String nameContact = "Trong Dat";
+    String relationship = "Husband";
     String otherId = "112233";
     String driversLicenseNumber = "A123-456-8899";
     String licenseExpiryDate = "2028-10-25";
