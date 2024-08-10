@@ -9,6 +9,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.*;
 import reportConfig.ExtentTestManager;
+import utilities.DataFakerConfig;
 
 import java.lang.reflect.Method;
 
@@ -22,6 +23,11 @@ public class PIM_01_Employee extends BaseTest {
     private PersonalDetailsPageObject personalDetailsPage;
     private ContactDetailsPageObject contactDetailsPage;
     private EmergencyContactPageObject emergencyContactPage;
+    private DataFakerConfig fakerConfig;
+
+    String nameContact, relationship, otherId, driversLicenseNumber, licenseExpiryDate, nationality, maritalStatus, gender, dateOfBirth, firstName, middleName,
+            lastName, employeeID, file1, file2, file3, multiFile,street1, street2, city, stateProvince, zipCode, country, homeTelephone, workTelephone, mobile,other_Email,comment,work_Email;
+
 
 
     @Parameters({"browser", "url"})
@@ -29,11 +35,46 @@ public class PIM_01_Employee extends BaseTest {
     public void beforeClass(String browserName, String url) {
         driver = getBrowserDriver(browserName, url);
         this.browserName = browserName;
+        fakerConfig = DataFakerConfig.getFaker();
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.enterToUserNameTextBox("Admin");
         loginPage.enterToPasswordTextBox("Admin@admin123");
         homepage = loginPage.clickToLoginButton();
         employeeListPage = homepage.openEmployeeListPage();
+        nameContact = fakerConfig.getNameContact();
+        relationship = fakerConfig.getRelationship();
+        otherId = fakerConfig.getOtherId();
+//        driversLicenseNumber = fakerConfig.getDriversLicenseNumber();
+        driversLicenseNumber = "A123-456-8899";
+        licenseExpiryDate = "2028-10-25";
+//        nationality = fakerConfig.getNationality();
+        nationality = "Vietnamese";
+        maritalStatus = "Married";
+//        maritalStatus = fakerConfig.getMaritalStatus();
+//        gender = fakerConfig.getGender();
+        gender = "Male";
+        dateOfBirth = "1991-04-10";
+        firstName = fakerConfig.getFirstName();
+        middleName = fakerConfig.getMiddleName();
+        lastName = fakerConfig.getLastName();
+        employeeID = fakerConfig.getEmployeeID();
+        file1 = "996.png";
+        file2 = "997.png";
+        file3 = "998.png";
+//        multiFile[] = {file1, file2, file3};
+        street1 = fakerConfig.getStreet1();
+        street2 = fakerConfig.getStreet2();
+        city = fakerConfig.getCity();
+        stateProvince = fakerConfig.getStateProvince();
+        zipCode = fakerConfig.getZipCode();
+        country = "Aruba";
+        homeTelephone = fakerConfig.getHomeTelephone();
+        workTelephone = fakerConfig.getWorkTelephone();
+        mobile = fakerConfig.getMobile();
+        other_Email = fakerConfig.getEmail();
+        work_Email = fakerConfig.getEmail();
+        comment = fakerConfig.getComment();
+
     }
 
     @Test
@@ -137,41 +178,12 @@ public class PIM_01_Employee extends BaseTest {
 
     }
 
-    String nameContact = "Trong Dat";
-    String relationship = "Husband";
-    String otherId = "112233";
-    String driversLicenseNumber = "A123-456-8899";
-    String licenseExpiryDate = "2028-10-25";
-    String nationality = "Canadian";
-    String maritalStatus = "Married";
-    String gender = "Male";
-    String dateOfBirth = "1991-04-10";
-    String firstName = "David";
-    String middleName = "Beck";
-    String lastName = "Duc";
-    String employeeID;
-    String file1 = "996.png";
-    String file2 = "997.png";
-    String file3 = "998.png";
-    String multiFile[] = {file1, file2, file3};
-    String street1 = "so 138";
-    String street2 = "pho Tran Binh";
-    String city = "Nam Tu Liem";
-    String stateProvince = "Ha Noi";
-    String zipCode = "100000";
-    String country = "Viet Nam";
-    String homeTelephone = "0988098078";
-    String workTelephone = "0988098088";
-    String mobile = "0911098088";
-    String other_Email = "jasmine" + generateRandomNumber() + "@gmail.com";
-    String work_Email = "jasmine" + generateRandomNumber() + "@fpt.com";
-    String comment = "Comment 01";
-
 
     @AfterClass
     public void afterClass() {
         closeBrowserDriver();
     }
+
 
 
 }
