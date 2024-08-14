@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.admin.BaseActionsPageUI;
 import pageUIs.admin.ContactDetailsPageUI;
 import pageUIs.admin.PersonalDetailsPageUI;
+import pojoData.PersonalDetailsInfor;
 
 public class PersonalDetailsPageObject extends BaseActions {
     public String getFirstName(){
@@ -83,4 +84,13 @@ public class PersonalDetailsPageObject extends BaseActions {
         return getElementText(PersonalDetailsPageUI.MARITAL_STATUS_SELECT);
     }
 
+    public void setPersonalDetail(PersonalDetailsInfor personalDetailsInfor) {
+        enterToOtherIdTextbox(personalDetailsInfor.getOtherId());
+        enterToDriversLicenseNumberTextbox(personalDetailsInfor.getDriversLicenseNumber());
+        enterTolicenseExpiryDateDatePicker(personalDetailsInfor.getLicenseExpiryDate());
+        enterToDateOfBirthteDatePicker(personalDetailsInfor.getDateOfBirth());
+        selectToNationalityDropdown(personalDetailsInfor.getNationality());
+        selectToMaritalStatusDropdown(personalDetailsInfor.getMaritalStatus());
+        clickToRadioButtonByLabelName(personalDetailsInfor.getGender());
+    }
 }

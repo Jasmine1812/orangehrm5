@@ -6,10 +6,17 @@
         <listener class-name="reportConfig.ExtentTestListener"></listener>
     </listeners>
     <parameter name="url" value="http://jasmine.com/orangehrm5"></parameter>
+<!--    <test name="Run on Chrome browser">-->
+<!--        <parameter name="browser" value="chrome"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="com.orangehrm.admin.PIM_01_Employee"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
     <test name="Run on Chrome browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.orangehrm.admin.PIM_01_Employee"/>
+            <class name="com.orangehrm.admin.PIM_01_Employee_Data_POJO"/>
         </classes>
     </test>
 

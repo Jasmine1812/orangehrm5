@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="datafaker-2.3.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libraries/libDatafaker/datafaker-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/libDatafaker/libphonenumber-8.13.43.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/libDatafaker/rgxgen-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/libDatafaker/snakeyaml-2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
