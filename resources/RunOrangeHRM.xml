@@ -16,7 +16,7 @@
     <test name="Run on Chrome browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.orangehrm.admin.PIM_01_Employee_Data_POJO"/>
+            <class name="com.orangehrm.admin.PIM_01_Employee_Data_JSON"/>
         </classes>
     </test>
 

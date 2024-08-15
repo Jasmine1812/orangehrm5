@@ -8,5 +8,6 @@ public class GlobalConstants {
     public static final long LONG_TIMEOUT = 50 ;
     public static final String OS_NAME = System.getProperty("os.name");
     public static final String UPLOAD_PATH = RELATIVE_PROJECT_PATH + File.separator +  "uploadFiles" + File.separator;
+    public static final String RESOURCE_PATH = RELATIVE_PROJECT_PATH + File.separator +  "resources" + File.separator;
     public static final long SHORT_TIMEOUT = 5;
 }

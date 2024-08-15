@@ -1,6 +1,7 @@
 package pageObjects;
 
 import commons.BaseActions;
+import jsonData.EmployeeInfo;
 import org.openqa.selenium.WebDriver;
 import pageUIs.admin.BaseActionsPageUI;
 import pageUIs.admin.ContactDetailsPageUI;
@@ -92,5 +93,15 @@ public class PersonalDetailsPageObject extends BaseActions {
         selectToNationalityDropdown(personalDetailsInfor.getNationality());
         selectToMaritalStatusDropdown(personalDetailsInfor.getMaritalStatus());
         clickToRadioButtonByLabelName(personalDetailsInfor.getGender());
+    }
+
+    public void setPersonalDetail(EmployeeInfo employeeInfo) {
+        enterToOtherIdTextbox(employeeInfo.getOtherID());
+        enterToDriversLicenseNumberTextbox(employeeInfo.getDriversLicenseNumber());
+        enterTolicenseExpiryDateDatePicker(employeeInfo.getLicenseExpiryDate());
+        enterToDateOfBirthteDatePicker(employeeInfo.getDateOfBirth());
+        selectToNationalityDropdown(employeeInfo.getNationality());
+        selectToMaritalStatusDropdown(employeeInfo.getMaritalStatus());
+        clickToRadioButtonByLabelName(employeeInfo.getGender());
     }
 }

@@ -1,0 +1,14 @@
+{
+  "firstname": "Nguyen",
+  "middlename": "Thai",
+  "lastname": "Hoc",
+  "PersonalDetails": {
+    "otherId": "99999",
+    "driversLicenseNumber": "A199-456-8899",
+    "dateOfBirth": "1991-04-30",
+    "gender": "Male",
+    "licenseExpiryDate": "2028-10-25",
+    "maritalStatus": "Married",
+    "nationality": "Vietnamese"
+  }
+}
