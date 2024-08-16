@@ -19,5 +19,6 @@
     <orderEntry type="library" name="datafaker-2.3.1" level="project" />
     <orderEntry type="library" name="datafaker-2.3.1" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.15.2" level="project" />
+    <orderEntry type="library" name="commons-codec-1.16.0" level="project" />
   </component>
 </module>
