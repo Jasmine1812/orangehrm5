@@ -65,5 +65,8 @@ public class BaseActions extends BasePage {
     }
 
 
-
+    public boolean isWarningMessageDisplayed(String message) {
+        waitForElementVisible(BaseActionsPageUI.DYNAMIC_WARNING_MESSAGE, message);
+        return isElementDisplayed(BaseActionsPageUI.DYNAMIC_WARNING_MESSAGE, message);
+    }
 }

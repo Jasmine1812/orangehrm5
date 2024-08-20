@@ -9,5 +9,6 @@ public class BaseActionsPageUI {
     public static final String DYNAMIC_EDIT_ICON_BY_COLUMN_INDDEX_AND_ROW_INDEX = "xpath=//div[@class='oxd-table-card'][%s]//div[%s]/div[text()='%s']/parent::div/following-sibling::div//i[contains(@class,'bi-pencil-fill')]";
     public static final String UPLOAD_FILE = "xpath=//input[@type='file']";
     public static final String DYAMIC_LEFT_MENU_PIM_BY_TEXT = "xpath=//div[@class='orangehrm-tabs-wrapper']//a[text()='%s']";
+    public static final String DYNAMIC_WARNING_MESSAGE = "xpath=//div[contains(@class,'oxd-toast-content--info')]/p[text()='%s']";
 }
 

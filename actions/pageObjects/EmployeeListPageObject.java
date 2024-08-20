@@ -30,4 +30,13 @@ public class EmployeeListPageObject extends BaseActions {
         clickToElement(EmployeeListPageUI.SEARCH_BUTTON);
     }
 
+    public String getNoRecordsMessage() {
+        waitForElementVisible(EmployeeListPageUI.NO_RECORDS_MESSAGE);
+        return getElementText(EmployeeListPageUI.NO_RECORDS_MESSAGE);
+    }
+
+    public void enterToEmployeeNameTextbox(String name) {
+        waitForElementVisible(EmployeeListPageUI.EMPLOYEE_NAME);
+        sendKeyToElement(EmployeeListPageUI.EMPLOYEE_NAME, name);
+    }
 }

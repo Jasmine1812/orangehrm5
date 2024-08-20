@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="OrangeHRM Automation Testing">
+
+    <parameter name="url" value="http://jasmine.com/orangehrm5"></parameter>
+    <test name="Run on Chrome browser">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="com.orangehrm.admin.PIM_01_Employee_Data_Search_Test_Not_Dependency"/>
+        </classes>
+    </test>
+
+</suite> <!-- Suite -->
