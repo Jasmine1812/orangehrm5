@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="OrangeHRM Automation Testing">
 
-    <parameter name="url" value="http://jasmine.com/orangehrm5"></parameter>
+    <parameter name="url" value="http://localhost:90//orangehrm5"></parameter>
     <test name="Run on Chrome browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>

@@ -5,18 +5,12 @@
         <listener class-name="commons.MethodListener"></listener>
         <listener class-name="reportConfig.ExtentTestListener"></listener>
     </listeners>
-    <parameter name="url" value="http://jasmine.com/orangehrm5"></parameter>
-<!--    <test name="Run on Chrome browser">-->
-<!--        <parameter name="browser" value="chrome"></parameter>-->
-<!--        <classes>-->
-<!--            <class name="com.orangehrm.admin.PIM_01_Employee"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <parameter name="url" value="http://localhost:90//orangehrm5"></parameter>
 
     <test name="Run on Chrome browser">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="com.orangehrm.admin.PIM_01_Employee_Data_Excel"/>
+            <class name="com.orangehrm.admin.PIM_01_Employee_CheckTotal_DB"/>
         </classes>
     </test>
 
